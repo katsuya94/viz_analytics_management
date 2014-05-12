@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508005432) do
+ActiveRecord::Schema.define(version: 20140512222952) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20140508005432) do
   create_table "data", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "metric_id"
+    t.integer  "metric_id",   null: false
     t.integer  "previous_id"
     t.float    "value"
-    t.integer  "company_id"
+    t.integer  "company_id",  null: false
   end
 
   create_table "metrics", force: true do |t|
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20140508005432) do
   create_table "recents", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "metric_id"
-    t.integer  "datum_id"
+    t.integer  "metric_id",  null: false
+    t.integer  "datum_id",   null: false
   end
 
 end

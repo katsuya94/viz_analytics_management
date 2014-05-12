@@ -1,7 +1,7 @@
 class Raw < Metric
 
 	def get_datum(company)
-		recent = self.recents.with_company company
+		recent = self.recents.with_company(company).first
 		
 		unless recent.datum.old?
 			return recent.datum.value, self.class.name.underscore.to_sym
@@ -9,7 +9,7 @@ class Raw < Metric
 
 		value = self.class.raw(company)
 
-		new_datum = Datum.new :value => value, :company => company, :previous => recent.datum
+		new_datum = Datum.new :value => value, :metric => self, :company => company, :previous => recent.datum
 		new_datum.save
 
 		recent.datum = new_datum

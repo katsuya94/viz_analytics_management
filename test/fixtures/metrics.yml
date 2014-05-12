@@ -7,4 +7,3 @@
 bounce_rate:
   description: It is a rating of the bounciness of the user
   type: BounceRate
-  lifetime: 7

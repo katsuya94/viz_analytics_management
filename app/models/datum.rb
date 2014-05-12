@@ -7,7 +7,7 @@ class Datum < ActiveRecord::Base
 	belongs_to :previous, :class_name => 'Datum'
 
 	def old?
-		lifetime = self.metric.lifetime
+		lifetime = self.metric.class.lifetime
 		Date.today - self.updated_at.to_date > lifetime
 	end
 
