@@ -2,68 +2,48 @@
 	<div class="container">
 		<h1 color="blue">VizAnalytics</h1>
 		<p>Making social bench-marking and web performance analysis simple</p>
-		<p><a class="btn btn-primary btn-lg" role="button">See all metrics</a></p>
+		<p><a href="metrics/details" class="btn btn-primary btn-lg" role="button">See all metrics</a></p>
 	</div>
 </div>
 
-<h2 align="center" valign="middle">User Engagement</h2>
-<div class="row-fluid">
-	<div id='g1' class="span2">
-		<a class="divLink" href="./bounce"></a>
-	</div>
-	<div id='g2' class="span2"></div>
-	<div id='g3' class="span2"></div>
-</div>
-<h2 align="center" valign="middle">Reader Acquisition</h2>
-<div class="row-fluid">
-	<div id='g4' class="span2"></div>
-	<div id='g5' class="span2"></div>
-	<div id='g6' class="span2"></div>
-	<div id='g7' class="span2"></div>
-</div>
-<h2 align="center" valign="middle">Device Type</h2>
-<div class="row-fluid">
-	<div id='g8' class="span2"></div>
-	<div id='g9' class="span2"></div>
-	<div id='g10' class="span2"></div>
+<h2>User Engagement</h2>
+
+<div class="row gauge-row">
+	<div class="col-xs-4"><div id='g1'></div></div>
+	<div class="col-xs-4"><div id='g2'></div></div>
+	<div class="col-xs-4"><div id='g3'></div></div>
 </div>
 
-<table class="table table-bordered">
+<h2>Reader Acquisition</h2>
+
+<div class="row gauge-row">
+	<div class="col-xs-4"><div id='g4'></div></div>
+	<div class="col-xs-4"><div id='g5'></div></div>
+	<div class="col-xs-4"><div id='g6'></div></div>
+</div>
+
+<table class="table table-striped">
 	<tr>
-		<td align="center" valign="middle"><strong>Bounce Rate</strong></td>
-		<td align="center" valign="middle"><strong>Pages Per Visit</strong></td>
-		<td align="center" valign="middle"><strong>Percentage Loyal Visitors</strong></td>
+		<td><strong>Bounce Rate</strong></td>
+		<td><strong>Pages Per Visit</strong></td>
+		<td><strong>Percentage Loyal Visitors</strong></td>
+		<td></td>
 	</tr>
 	<tr>
-		<td align="center" valign="middle">
-			<div id='g1' style="height:1 width:1"></div>
-		</td>
-		<td align="center" valign="middle"><img src="img/img-2.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-		<td align="center" valign="middle"><img src="img/img-3.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
+		<td><strong>Percentage of Views via Search</strong></td>
+		<td><strong>Percentage of Views via Social</strong></td>
+		<td><strong>Percentage of Views via Referral</strong></td>
+		<td><strong>Percentage of Views via Direct Referral</strong></td>
 	</tr>
 	<tr>
-		<td align="center" valign="middle"><strong>Percentage of Views via Search</strong></td>
-		<td align="center" valign="middle"><strong>Percentage of Views via Social</strong></td>
-		<td align="center" valign="middle"><strong>Percentage of Views via Referral</strong></td>
-		<td align="center" valign="middle"><strong>Percentage of Views via Direct Referral</strong></td>
-	</tr>
-	<tr>
-		<td align="center" valign="middle"><img src="img/img-4.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-		<td align="center" valign="middle"><img src="img/img-5.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-		<td align="center" valign="middle"><img src="img/img-6.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-		<td align="center" valign="middle"><img src="img/img-6.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-	</tr>
-	<tr>
-		<td align="center" valign="middle"><strong>Percentage of Views on Desktop</strong></td>
-		<td align="center" valign="middle"><strong>Percentage of Views on Mobile</strong></td>
-		<td align="center" valign="middle"><strong>Percentage of Views on Tablet</strong></td>
-	</tr>
-	<tr>
-		<td align="center" valign="middle"><img src="img/img-4.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-		<td align="center" valign="middle"><img src="img/img-5.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
-		<td align="center" valign="middle"><img src="img/img-6.jpg" class="img-responsive" alt="Responsive image" class="img-thumbnail"></td>
+		<td><strong>Percentage of Views on Desktop</strong></td>
+		<td><strong>Percentage of Views on Mobile</strong></td>
+		<td><strong>Percentage of Views on Tablet</strong></td>
+		<td></td>
 	</tr>
 </table>
+
+<% content_for :head do %>
 
 <script>
 var g1,g2,g3,g4,g5,g6;
@@ -72,12 +52,12 @@ window.onload=function(){
 
 	var color = ["#990000","#ffa500","#008000"]
 
-	var g1 = new JustGage({ id:"g1", value:getRandomInt(0,100), min:0, max:100, title: "Expected Bounce Rate", label:"", levelColors: color });
-	var g2 = new JustGage({ id:"g2", value:getRandomInt(0,100), min:0, max:100, title: "Expected Pages/Visit", label:"", levelColors: color });
-	var g3 = new JustGage({ id:"g3", value:getRandomInt(0,100), min:0, max:100, title: "Expected %New Visitors", label:"", levelColors: color });
-	var g4 = new JustGage({ id:"g4", value:getRandomInt(0,100), min:0, max:100, title: "%View Search", label:"", levelColors: color });
-	var g5 = new JustGage({ id:"g5", value:getRandomInt(0,100), min:0, max:100, title: "%View Social", label:"", levelColors: color });
-	var g6 = new JustGage({ id:"g6", value:getRandomInt(0,100), min:0, max:100, title: "%View Referral", label:"", levelColors: color });
+	var g1 = new JustGage({ id: "g1", value: getRandomInt(0, 100), min: 0, max: 100, title: "Expected Bounce Rate", label: "", levelColors: color });
+	var g2 = new JustGage({ id: "g2", value: getRandomInt(0, 100), min: 0, max: 100, title: "Expected Pages/Visit", label: "", levelColors: color });
+	var g3 = new JustGage({ id: "g3", value: getRandomInt(0, 100), min: 0, max: 100, title: "Expected % New Visitors", label:"", levelColors: color });
+	var g4 = new JustGage({ id: "g4", value: getRandomInt(0, 100), min: 0, max: 100, title: "% View Search", label: "", levelColors: color });
+	var g5 = new JustGage({ id: "g5", value: getRandomInt(0, 100), min: 0, max: 100, title: "% View Social", label: "", levelColors: color });
+	var g6 = new JustGage({ id: "g6", value: getRandomInt(0, 100), min: 0, max: 100, title: "% View Referral", label: "", levelColors: color });
 
 	setInterval(function() {
 		g1.refresh(getRandomInt(0, 100));
@@ -89,3 +69,5 @@ window.onload=function(){
 	}, 2500);
 }
 </script>
+
+<% end %>

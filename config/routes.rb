@@ -1,6 +1,8 @@
 VizAnalytics::Application.routes.draw do
+  get "", to: "metrics#dashboard"
   get "metrics/dashboard"
   get "metrics/details"
+  get "metrics/metric/:metric/:company", to: "metrics#metric"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

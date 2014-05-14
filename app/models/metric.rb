@@ -13,10 +13,10 @@ class Metric < ActiveRecord::Base
 		if recent.nil?
 			recent = Recent.new :metric => instance
 		elsif not recent.datum.old?
-			return recent.datum.value, self.name.underscore.to_sym
+			return recent.datum
 		end
 		
-		value = get_value(company)
+		value = self.get_value(company)
 
 		new_datum = Datum.new :value => value, :metric => instance, :company => company, :previous => recent.datum
 		new_datum.save
@@ -24,14 +24,17 @@ class Metric < ActiveRecord::Base
 		recent.datum = new_datum
 		recent.save
 
-		return value, self.name.underscore.to_sym
+		return new_datum
 	end
 
 	def self.percentile(datum)
 		instance = self.first
-		above = instance.recents.joins(:datum).where('"data"."value" > ?', datum.value).size
+		total = instance.recents.size
 		below = instance.recents.joins(:datum).where('"data"."value" < ?', datum.value).size
-		below.to_f / (above + below).to_f
+		below.to_f / total.to_f
+	end
+
+	def self.get_value(company)
 	end
 
 end

@@ -11,8 +11,8 @@ class Calculated < Metric
 		sources = Hash.new
 
 		self.dependencies.each do |d|
-			val, key = d.get_datum(company)
-			sources[key] = val
+			datum = d.get_datum(company)
+			sources[datum.metric.class.name.underscore.to_sym] = datum.value
 		end
 
 		self.calculate(sources)
