@@ -18,8 +18,12 @@ class Metric < ActiveRecord::Base
 		
 		value = self.get_value(company)
 
-		new_datum = Datum.new :value => value, :metric => instance, :company => company, :previous => recent.datum
-		new_datum.save
+		unless value.nil?
+			new_datum = Datum.new :value => value, :metric => instance, :company => company, :previous => recent.datum
+			new_datum.save
+		else
+			new_datum = nil
+		end
 
 		recent.datum = new_datum
 		recent.save
@@ -34,7 +38,10 @@ class Metric < ActiveRecord::Base
 		below.to_f / total.to_f
 	end
 
-	def self.get_value(company)
+	def self.singleton(description)
+		raise 'Already instantiated' unless self.first.nil?
+		instance = self.new :description => description
+		instance.save
 	end
 
 end
