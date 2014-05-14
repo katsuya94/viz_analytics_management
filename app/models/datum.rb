@@ -8,7 +8,7 @@ class Datum < ActiveRecord::Base
 
 	def old?
 		lifetime = self.metric.class.lifetime
-		Date.today - self.updated_at.to_date > lifetime
+		Date.today - self.created_at.to_date > lifetime
 	end
 
 end

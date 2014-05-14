@@ -9,6 +9,6 @@ class MetricsController < ApplicationController
 		c = Company.find(params[:company])
 		m = Metric.find(params[:metric]).class
 		d = m.get_datum(c)
-		render :json => d
+		render :json => { :timestamp => d.created_at, :value => d.value }
 	end
 end

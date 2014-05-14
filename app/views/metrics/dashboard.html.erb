@@ -52,12 +52,12 @@ window.onload=function(){
 
 	var color = ["#990000","#ffa500","#008000"]
 
-	var g1 = new JustGage({ id: "g1", value: getRandomInt(0, 100), min: 0, max: 100, title: "Expected Bounce Rate", label: "", levelColors: color });
-	var g2 = new JustGage({ id: "g2", value: getRandomInt(0, 100), min: 0, max: 100, title: "Expected Pages/Visit", label: "", levelColors: color });
-	var g3 = new JustGage({ id: "g3", value: getRandomInt(0, 100), min: 0, max: 100, title: "Expected % New Visitors", label:"", levelColors: color });
-	var g4 = new JustGage({ id: "g4", value: getRandomInt(0, 100), min: 0, max: 100, title: "% View Search", label: "", levelColors: color });
-	var g5 = new JustGage({ id: "g5", value: getRandomInt(0, 100), min: 0, max: 100, title: "% View Social", label: "", levelColors: color });
-	var g6 = new JustGage({ id: "g6", value: getRandomInt(0, 100), min: 0, max: 100, title: "% View Referral", label: "", levelColors: color });
+	var g1 = new JustGage({ id: "g1", value: getRandomInt(0, 100), min: 0, max: 100, title: "Bounce Rate", label: "", levelColors: color });
+	var g2 = new JustGage({ id: "g2", value: getRandomInt(0, 100), min: 0, max: 100, title: "Pages Per Visit", label: "", levelColors: color });
+	var g3 = new JustGage({ id: "g3", value: getRandomInt(0, 100), min: 0, max: 100, title: "Percentage of Loyal Visitors", label:"", levelColors: color });
+	var g4 = new JustGage({ id: "g4", value: getRandomInt(0, 100), min: 0, max: 100, title: "Percentage of Views via Search", label: "", levelColors: color });
+	var g5 = new JustGage({ id: "g5", value: getRandomInt(0, 100), min: 0, max: 100, title: "Percentage of Views via Social", label: "", levelColors: color });
+	var g6 = new JustGage({ id: "g6", value: getRandomInt(0, 100), min: 0, max: 100, title: "Percentage of Views via Referral", label: "", levelColors: color });
 
 	setInterval(function() {
 		g1.refresh(getRandomInt(0, 100));
