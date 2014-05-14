@@ -1,0 +1,10 @@
+/* Place all the styles related to the Metrics controller here.
+ * They will automatically be included in application.css.
+ */
+
+#g1, #g2, #g3, #g4, #g5, #g6 {
+	width:400px;
+	height:320px;
+	display: inline-block;
+	margin: 1em;
+}
