@@ -31,13 +31,6 @@ class Metric < ActiveRecord::Base
 		return new_datum
 	end
 
-	def self.percentile(datum)
-		instance = self.first
-		total = instance.recents.size
-		below = instance.recents.joins(:datum).where('"data"."value" < ?', datum.value).size
-		below.to_f / total.to_f
-	end
-
 	def self.singleton(description)
 		raise 'Already instantiated' unless self.first.nil?
 		instance = self.new :description => description
