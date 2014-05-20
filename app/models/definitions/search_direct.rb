@@ -1,9 +1,9 @@
-class BounceRate < Raw
+class SearchDirect < Raw
 
 	self.lifetime = 7
 
 	def self.get_value(company)
-		value = (GetterHelper::get 'bouncerate', company.url)
+		value = (GetterHelper::get 'directsearch', company.url)
 		return nil unless value
 		return value.to_f
 	end

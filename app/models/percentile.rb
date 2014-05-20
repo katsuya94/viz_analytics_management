@@ -11,7 +11,7 @@ class Percentile < Metric
 		datum = self.reference.get_datum(company)
 		total = self.reference.first.recents.size
 		below = self.reference.first.recents.joins(:datum).where('"data"."value" < ?', datum.value).size
-		below.to_f / total.to_f
+		100.0 * below.to_f / total.to_f
 	end
 
 end
