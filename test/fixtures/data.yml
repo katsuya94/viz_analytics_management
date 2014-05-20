@@ -8,7 +8,7 @@ d_00:
   metric: bounce_rate
   company: buzzfeed
   value: 42.7
-  updated_at: 2014-04-01
+  created_at: 2014-04-01
 
 d_01:
   metric: bounce_rate

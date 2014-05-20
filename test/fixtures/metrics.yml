@@ -8,6 +8,6 @@ bounce_rate:
   description: It is a rating of the bounciness of the user
   type: BounceRate
 
-bounce_rate_ten:
-  description: It is ten times a rating of the bounciness of the user
-  type: BounceRateTen
+bounce_rate_percentile:
+  description: How your bounciness stacks up
+  type: BounceRatePercentile

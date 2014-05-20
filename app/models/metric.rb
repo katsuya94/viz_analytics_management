@@ -1,9 +1,11 @@
 class Metric < ActiveRecord::Base
 
+	private_class_method :new
+
 	class_attribute :lifetime
 
 	has_many :recents
-	has_many :data, :through => :recent
+	has_many :data, :through => :recents
 
 	def self.get_datum(company)
 		instance = self.first

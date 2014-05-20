@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class MetricTest < ActiveSupport::TestCase
-	test "Raw Metrics" do
+	test "Metrics" do
+		puts metrics(:bounce_rate).data.first.value
 		puts metrics(:bounce_rate).class.get_datum(companies(:buzzfeed)).value
 		puts metrics(:bounce_rate).class.get_datum(companies(:buzzfeed)).value
-		puts metrics(:bounce_rate_ten).class.get_datum(companies(:buzzfeed)).value
-		puts BounceRate.percentile(data(:d_00))
+		puts metrics(:bounce_rate_percentile).class.get_datum(companies(:buzzfeed)).value
 	end
 end
