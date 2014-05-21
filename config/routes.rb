@@ -1,6 +1,6 @@
 VizAnalytics::Application.routes.draw do
   devise_for :users
-  root to: "metrics#dashboard"
+  root to: "guest#home"
   get "metrics/dashboard"
   get "metrics/details"
   get "metrics/metric/:metric", to: "metrics#metric"

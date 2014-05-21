@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140521051724) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "companies", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -59,8 +62,8 @@ ActiveRecord::Schema.define(version: 20140521051724) do
     t.text     "email",                  default: "", null: false
   end
 
-  add_index "users", ["company_id"], name: "index_users_on_company_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

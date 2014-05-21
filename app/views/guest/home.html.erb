@@ -1,0 +1,26 @@
+<div style="position: relative;">
+  <%= image_tag "vizanalytics.jpg", style: "position: absolute; left: 50px; top: 150px; width: 400px;" %>
+  <div style="position: absolute; right: 50px; top: 50px; width: 400px;">
+  <h2>Sign in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
+    <div class="form-group"><%= f.label :username %><br />
+  	  <%= f.text_field :username, autofocus: true, class: "form-control" %>
+  	</div>
+
+    <div class="form-group"><%= f.label :password %><br />
+      <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+  	</div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="checkbox"><%= f.label :remember_me %><%= f.check_box :remember_me %></div>
+    <% end -%>
+
+    <%= f.submit "Sign in", class: "btn btn-default" %>
+  <% end %>
+
+  <%- if devise_mapping.recoverable? %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  <% end -%>
+  </div>
+</div>
