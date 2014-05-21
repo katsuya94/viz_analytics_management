@@ -1,9 +1,9 @@
-class MobilePps < Raw
+class BounceRateMobile < Raw
 
 	self.lifetime = 7
 
 	def self.get_value(company)
-		value = (GetterHelper::get 'mobilepagespersession', company.url)
+		value = (GetterHelper::get 'mobilebouncerate', company.url)
 		return nil unless value
 		return value.to_f
 	end

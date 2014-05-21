@@ -1,9 +1,9 @@
-class TabletBounceRate < Raw
+class SessionsMobile < Raw
 
 	self.lifetime = 7
 
 	def self.get_value(company)
-		value = (GetterHelper::get 'tabletbouncerate', company.url)
+		value = (GetterHelper::get 'mobilesessions', company.url)
 		return nil unless value
 		return value.to_f
 	end
