@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_one :company
+	belongs_to :company
 
 	devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 end
