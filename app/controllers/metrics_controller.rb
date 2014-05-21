@@ -1,4 +1,7 @@
 class MetricsController < ApplicationController
+
+	before_action :authenticate_user!
+
 	def dashboard
 	end
 
@@ -6,7 +9,7 @@ class MetricsController < ApplicationController
 	end
 
 	def metric
-		c = Company.find(params[:company])
+		c = current_user.company
 		m = Metric.find(params[:metric]).class
 		d = m.get_datum(c)
 		render :json => { :timestamp => d.created_at, :value => d.value }
