@@ -12,6 +12,7 @@ class Calculated < Metric
 
 		self.dependencies.each do |d|
 			datum = d.get_datum(company)
+			return nil if datum.nil?
 			sources[datum.metric.class.name.underscore.to_sym] = datum.value
 		end
 
