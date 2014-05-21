@@ -21,5 +21,13 @@ module VizAnalytics
     # config.i18n.default_locale = :de
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', 'definitions')]
+
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :erb
+      g.test_framework  :test_unit, fixture: false
+      g.stylesheets     false
+      g.javascripts     false
+    end
   end
 end
