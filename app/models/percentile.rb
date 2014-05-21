@@ -3,7 +3,7 @@ class Percentile < Metric
 	class_attribute :reference
 
 	def self.references(classname)
-		self.reference = classname.to_s.classify.constantize
+		self.reference = classname.to_s.camelize.constantize
 	end
 
 	def self.get_value(company)

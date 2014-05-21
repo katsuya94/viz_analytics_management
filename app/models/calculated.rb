@@ -4,7 +4,7 @@ class Calculated < Metric
 	self.dependencies = Array.new
 
 	def self.depends_on(classname)
-		self.dependencies.push(classname.to_s.classify.constantize)
+		self.dependencies.push(classname.to_s.camelize.constantize)
 	end
 
 	def self.get_value(company)
