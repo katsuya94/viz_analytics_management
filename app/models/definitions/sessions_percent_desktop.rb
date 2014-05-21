@@ -1,5 +1,7 @@
 class SessionsPercentDesktop < Calculated
 
+	self.lifetime = 7
+
 	depends_on :sessions_desktop
 	depends_on :session_count_total
 

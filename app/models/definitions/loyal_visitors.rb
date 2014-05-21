@@ -1,5 +1,7 @@
 class LoyalVisitors < Calculated
 
+	self.lifetime = 7
+
 	depends_on :session_count_one
 	depends_on :session_count_two
 	depends_on :session_count_three

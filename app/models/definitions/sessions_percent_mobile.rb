@@ -1,5 +1,7 @@
 class SessionsPercentMobile < Calculated
 
+	self.lifetime = 7
+
 	depends_on :sessions_mobile
 	depends_on :session_count_total
 

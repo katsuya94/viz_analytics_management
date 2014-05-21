@@ -1,5 +1,7 @@
 class SessionsPercentDirect < Calculated
 
+	self.lifetime = 7
+
 	depends_on :sessions_direct
 	depends_on :sessions_search
 	depends_on :sessions_referral

@@ -1,5 +1,7 @@
 class PpsExpected < Calculated
 
+	self.lifetime = 7
+
 	depends_on :sessions_percent_direct
 
 	def self.calculate(sources)

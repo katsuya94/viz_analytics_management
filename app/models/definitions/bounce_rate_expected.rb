@@ -1,5 +1,7 @@
 class BounceRateExpected < Calculated
 
+	self.lifetime = 7
+
 	depends_on :sessions_percent_social
 
 	def self.calculate(sources)
