@@ -1,22 +1,20 @@
 class Calculated < Metric
 
 	class_attribute :dependencies
-	self.dependencies = Array.new
 
 	def self.depends_on(classname)
-		self.dependencies.push(classname.to_s.camelize.constantize)
+		self.dependencies = Array.new if self.dependencies.nil?
+		self.dependencies << classname.to_s.camelize.constantize
 	end
 
 	def self.get_value(company)
 		sources = Hash.new
-
 		self.dependencies.each do |d|
 			datum = d.get_datum(company)
 			return nil if datum.nil?
-			sources[datum.metric.class.name.underscore.to_sym] = datum.value
+			sources[d.name.underscore.to_sym] = datum.value
 		end
-
-		self.calculate(sources)
+		return self.calculate(sources)
 	end
 
 	def self.calculate(sources)
