@@ -1,11 +1,8 @@
 class SessionsSocial < Raw
 
+	references 'socialsessions'
+
 	self.lifetime = 7
 
-	def self.get_value(company)
-		value = (GetterHelper::get 'socialsessions', company.url)
-		return nil unless value
-		return value.to_f
-	end
 
 end
