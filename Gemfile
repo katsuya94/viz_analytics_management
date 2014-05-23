@@ -8,9 +8,8 @@ group :test do
   gem 'sqlite3'
 end
 
-group :development do
-  gem 'sqlite3'
-end
+# Heroku
+gem 'rails_12factor', group: :production
 
 gem 'pg'
 
