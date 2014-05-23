@@ -12,6 +12,10 @@ class MetricsController < ApplicationController
 		c = current_user.company
 		m = Metric.find(params[:metric]).class
 		d = m.get_datum(c)
-		render :json => { :timestamp => d.created_at, :value => d.value }
+		if d.nil?
+			render :nothing => true, :status => 404
+		else
+			render :json => { :timestamp => d.created_at, :value => d.value }
+		end
 	end
 end

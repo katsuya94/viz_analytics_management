@@ -75,6 +75,8 @@ $(function() {
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
 			$(el).text(data.value.toFixed(0));
+		}).fail(function() {
+			$(el).text('Not Found');
 		});
 	});
 });
