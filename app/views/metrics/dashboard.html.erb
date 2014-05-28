@@ -120,14 +120,19 @@ $(function() {
 				deviceDict[metricNumber.toString()] = value;
 				if(metricNumber=='37'){
 					$('#devicesRow').find('div.progress div.progress-bar-success').width(deviceDict['30']+'%');
+					$('#devicesRow').find('div.progress div.progress-bar-success').text(deviceDict['30']+'%');
 					$('#devicesRow').find('div.progress div.progress-bar-warning').width(deviceDict['33']+'%');
+					$('#devicesRow').find('div.progress div.progress-bar-warning').text(deviceDict['33']+'%');
 					$('#devicesRow').find('div.progress div.progress-bar-danger').width(deviceDict['37']+'%');
+					$('#devicesRow').find('div.progress div.progress-bar-danger').text(deviceDict['37']+'%');
+
 					
 				$('.mypopover').popover({ trigger: "hover focus" });
 				}
 			}
 			if($.inArray(metricNumber.toString(), percentileArray)>=0 ||$.inArray(metricNumber.toString(), percentArray)>=0)
 				$(el).find('div.progress div').width(percentValueString);
+				$(el).find('div.progress div').text(percentValueString);
 		}).fail(function() {
 			$(el).text('Not Found');
 		});
