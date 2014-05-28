@@ -75,28 +75,6 @@
 
 <script>
 $(function() {
-	var description = {}
-	//for bounce rate percentile
-	description['6']=''
-	//for pages per session percentile
-	description['15'] = ''
-	//for loyal visitors percentile
-	description['9'] = ''
-	
-
-
-	
-	var percentArray = ['31','34','36','35','15','9','6'];
-	var actualValueArray = ['8','10','1'];
-	var device = ['30','33','37']
-	var deviceDict = {};
-	//$.inArray(value, array)>=0
-	var value=0;
-	var originalValue=0;
-	var valueString = '';
-	var percentValueString = '';
-	var metricNumber='';
-	var x = 0;
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
 			value = $(el).hasClass('smallnum') ? data.value.toFixed(2) : Math.round(data.value);
