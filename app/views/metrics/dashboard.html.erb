@@ -98,8 +98,7 @@ $(function() {
 				value = value/100;
 			}
 			$(el).text(valueString);
-			if($.inArray(originalValue.toString, percentileArray)>=0 ||$.inArray(originalValue.toString(), percentArray)>=0)
-
+			if($.inArray(metricNumber.toString, percentileArray)>=0 ||$.inArray(metricNumber.toString(), percentArray)>=0)
 			$(el).append(
       "<div class=\"progress\"><div class=\"progress-bar progress-bar-success mypopover\" role=\"progressbar\" aria-valuemin=\"0\" title=\"\" data-content=\"content here\" data-placement=\"bottom\"  data-toggle=\"popover\" data-original-title=\"personal title\" style=\"width: "+percentValueString+"; \">"+value+"</div></div>");
 	
