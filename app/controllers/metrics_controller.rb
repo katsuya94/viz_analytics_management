@@ -8,14 +8,17 @@ class MetricsController < ApplicationController
 	def details
 	end
 
-	def metric
+	def aggregate
 		c = current_user.company
-		m = Metric.find(params[:metric]).class
-		d = m.get_datum(c)
-		if d.nil?
-			render :nothing => true, :status => 404
-		else
-			render :json => { :timestamp => d.created_at, :value => d.value }
+		a = Array.new
+		params['q'].split.map!(&:to_i).each do |id|
+			d = Metric.find(id).class.get_datum(c)
+			if d.nil?
+				a << { :id => id, :value => nil }
+			else
+				a << { :id => id, :value => d.value }
+			end
 		end
+		render :json => a
 	end
 end

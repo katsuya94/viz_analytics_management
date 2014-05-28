@@ -74,27 +74,38 @@
 </style>
 
 <script>
-$(function() {
+
+function populate(data) {
 	$('.ajax').each(function(i, el) {
-		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
-			value = $(el).hasClass('smallnum') ? data.value.toFixed(2) : Math.round(data.value);
+		var m = $(el).attr('metric');
+		value = $(el).hasClass('smallnum') ? data[m].toFixed(2) : Math.round(data[m]);
 
-			if($(el).hasClass('text')) {
-				$(el).text(value + ($(el).hasClass('percent') ? '%' : ''));
-			}
+		if($(el).hasClass('text')) {
+			$(el).text(value + ($(el).hasClass('percent') ? '%' : ''));
+		}
 
-			if($(el).hasClass('bar')) {
-				$(el).find('div.progress div').width(value + '%').text(value + '%');
-			}
+		if($(el).hasClass('bar')) {
+			$(el).find('div.progress div').width(value + '%').text(value + '%');
+		}
 
-			if($(el).hasClass('stackbar')) {
-				$(el).width(value + '%').text($(el).attr('label'));
-			}
-		}).fail(function() {
-			if($(el).hasClass('text')) {
-				$(el).text('Not Found');
-			}
-		});
+		if($(el).hasClass('stackbar')) {
+			$(el).width(value + '%').text($(el).attr('label'));
+		}
+	});
+}
+
+$(function() {
+	var metrics = [];
+	$('.ajax').each(function(i, el) {
+		metrics.push($(el).attr('metric'));
+	});
+	$.getJSON(sprintf('/metrics/aggregate?q=' + metrics.join('+')), function(data) {
+		var values = new Float32Array(50);
+		for (var j = 0; j < data.length; j++) {
+			var d = data[j];
+			values[d.id] = d.value;
+		}
+		populate(values);
 	});
 });
 

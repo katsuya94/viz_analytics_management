@@ -3,7 +3,7 @@ VizAnalytics::Application.routes.draw do
   root to: "guest#home"
   get "metrics/dashboard"
   get "metrics/details"
-  get "metrics/metric/:metric", to: "metrics#metric"
+  get "metrics/aggregate"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
