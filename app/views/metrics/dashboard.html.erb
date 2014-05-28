@@ -3,15 +3,15 @@
 <div class="row">
 	<div class="col-xs-4">
 		<h3>Bounce Rate - <span class="ajax text percent" metric="1"></span></h3>
-		<span class="ajax bar" metric="6"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
+		<span class="ajax bar" metric="6"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="100% == you have the lowest bounce rate among other companies" data-placement="bottom"  data-toggle="popover" data-original-title="bounce Rate" style="width: 0%; "></div></div></span>
 	</div>
 	<div class="col-xs-4">
 		<h3>Pages Per Session - <span class="ajax text smallnum" metric="10">...</span></h3>
-		<span class="ajax bar" metric="15"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
+		<span class="ajax bar" metric="15"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="100% == you have the highest pages per session" data-placement="bottom"  data-toggle="popover" data-original-title="pages per session" style="width: 0%; "></div></div></span>
 	</div>
 	<div class="col-xs-4">
 		<h3>Loyal Visitors - <span class="ajax text percent" metric="9">...</span></h3>
-		<span class="ajax bar" metric="8"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
+		<span class="ajax bar" metric="8"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="Loyal visitors are those visits your website >=5 times/month" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
 	</div>
 </div>
 <p><a href="#" class="btn btn-primary btn-md">More</a></p>
@@ -21,7 +21,7 @@
 		<h1>Via</h1>
 		<div class="row">
 			<div class="col-xs-3"><h3>Search</h3></div>
-			<div class="col-xs-9"><span class="ajax bar" metric="35"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span></div>
+			<div class="col-xs-9"><span class="ajax bar" metric="35"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="sessions via search" data-placement="bottom"  data-toggle="popover" data-original-title="search" style="width: 0%; "></div></div></span></div>
 		</div>
 		<!--
 		<div class="row">
@@ -31,11 +31,11 @@
 		-->
 		<div class="row">
 			<div class="col-xs-3"><h3>Social</h3></div>
-			<div class="col-xs-9"><span class="ajax bar" metric="34"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span></div>
+			<div class="col-xs-9"><span class="ajax bar" metric="34"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="sessions via social referral" data-placement="bottom"  data-toggle="popover" data-original-title="social" style="width: 0%; "></div></div></span></div>
 		</div>
 		<div class="row">
 			<div class="col-xs-3"><h3>Direct</h3></div>
-			<div class="col-xs-9"><span class="ajax bar" metric="31"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span></div>
+			<div class="col-xs-9"><span class="ajax bar" metric="31"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="sessions via directly typing website address" data-placement="bottom"  data-toggle="popover" data-original-title="direct" style="width: 0%; "></div></div></span></div>
 		</div>
 		<p><a href="#" class="btn btn-primary btn-md">More</a></p>
 	</div>
@@ -96,6 +96,7 @@ $(function() {
 			$(el).find('div.progress').text('Not Found');
 		});
 	});
+	
 });
 
 </script>
