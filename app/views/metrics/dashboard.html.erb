@@ -18,7 +18,7 @@
 
 <div class="row">
 	<div class="col-xs-6">
-		<h1>Via&hellip;</h1>
+		<h1>Via</h1>
 		<div class="row">
 			<div class="col-xs-3"><h3>Search</h3></div>
 			<div class="col-xs-9"><span class="ajax bar" metric="35"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span></div>
@@ -63,6 +63,9 @@
 <style>
 	.progress {
 		height: 30px;
+		line-height: 30px;
+		vertical-align: middle;
+		text-align: center;
 	}
 	h3 {
 		margin: 0;
@@ -90,7 +93,7 @@ $(function() {
 				$(el).width(value + '%').text($(el).attr('label'));
 			}
 		}).fail(function() {
-			$(el).text('Not Found');
+			$(el).find('div.progress').text('Not Found');
 		});
 	});
 });
