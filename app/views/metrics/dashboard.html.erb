@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-xs-4">
 				<h3>Bounce Rate</h3>
-				<h4><span class="ajax" metric="1">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="1">Loading&hellip;%</span></h4>
 				<h4><span class="ajax" metric="6">Loading&hellip;</span> percentile</h4>
 			</div>
 			<div class="col-xs-4">
@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-xs-4">
 				<h3>Loyal Visitors</h3>
-				<h4><span class="ajax" metric="8">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="8">Loading&hellip;%</span></h4>
 				<h4><span class="ajax" metric="9">Loading&hellip;</span> percentile</h4>
 			</div>
 		</div>
@@ -28,19 +28,19 @@
 		<div class="row">
 			<div class="col-xs-3">
 				<h3>Via Search</h3>
-				<h4><span class="ajax" metric="35">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="35">Loading&hellip;%</span></h4>
 			</div>
 			<div class="col-xs-3">
 				<h3>Via Social</h3>
-				<h4><span class="ajax" metric="36">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="36">Loading&hellip;%</span></h4>
 			</div>
 			<div class="col-xs-3">
 				<h3>Via Referral</h3>
-				<h4><span class="ajax" metric="34">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="34">Loading&hellip;%</span></h4>
 			</div>
 			<div class="col-xs-3">
 				<h3>Via Direct Referral</h3>
-				<h4><span class="ajax" metric="31">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="31">Loading&hellip;%</span></h4>
 			</div>
 		</div>
 		<p><a href="#" class="btn btn-primary btn-lg">More</a></p>
@@ -53,15 +53,15 @@
 		<div class="row">
 			<div class="col-xs-4">
 				<h3>On Desktop</h3>
-				<h4><span class="ajax" metric="30">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="30">Loading&hellip;%</span></h4>
 			</div>
 			<div class="col-xs-4">
 				<h3>On Mobile</h3>
-				<h4><span class="ajax" metric="33">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="33">Loading&hellip;%</span></h4>
 			</div>
 			<div class="col-xs-4">
 				<h3>On Tablet</h3>
-				<h4><span class="ajax" metric="37">Loading&hellip;</span>%</h4>
+				<h4><span class="ajax" metric="37">Loading&hellip;%</span></h4>
 			</div>
 		</div>
 		<p><a href="#" class="btn btn-primary btn-lg">More</a></p>
@@ -75,6 +75,8 @@ $(function() {
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
 			$(el).text(data.value.toFixed(0));
+			$(el).append(
+      "<div class=\"progress\"><div class=\"progress-bar progress-bar-success mypopover\" role=\"progressbar\" aria-valuemin=\"0\" title=\"\" data-content=\"content here\" data-placement=\"bottom\"  data-toggle=\"popover\" data-original-title=\"personal title\" style=\"width: 50%; \">"+data.value.toFixed(0)/100+"</div></div>")
 		}).fail(function() {
 			$(el).text('Not Found');
 		});
