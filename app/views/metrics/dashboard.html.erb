@@ -2,15 +2,15 @@
 <h1>Engagement</h1>
 <div class="row">
 	<div class="col-xs-4">
-		<h3>Bounce Rate - <span class="ajaxtext" metric="6"></span></h3>
+		<h3>Bounce Rate - <span class="ajax text" metric="6"></span></h3>
 		<span class="ajax" metric="1"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
 	</div>
 	<div class="col-xs-4">
-		<h3>Pages Per Session - <span class="ajaxtext" metric="10">...</span></h3>
+		<h3>Pages Per Session - <span class="ajax text" metric="10">...</span></h3>
 		<span class="ajax" metric="15"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
 	</div>
 	<div class="col-xs-4">
-		<h3>Loyal Visitors - <span class="ajaxtext" metric="9">...</span></h3>
+		<h3>Loyal Visitors - <span class="ajax text" metric="9">...</span></h3>
 		<span class="ajax" metric="8"><div class="progress"><div class="progress-bar progress-bar-success mypopover" role="progressbar" aria-valuemin="0" title="" data-content="content here" data-placement="bottom"  data-toggle="popover" data-original-title="personal title" style="width: 0%; "></div></div></span>
 	</div>
 </div>
@@ -88,7 +88,7 @@
 <script>
 $(function() {
 	var percentArray = ['31','34','36','35','8','1'];
-	var percentileArray = ['6','9','15'];
+	var actualValueArray = ['6','9','17'];
 	var device = ['30','33','37']
 	var deviceDict = {};
 	//$.inArray(value, array)>=0
@@ -110,11 +110,6 @@ $(function() {
 				valueString = valueString + '%';
 				value = value/100;
 			}
-			else if($.inArray(metricNumber, percentileArray)>=0)
-			{
-				valueString = valueString + 'percentile';
-				value = value/100;
-			}
 			else if($.inArray(metricNumber,device)>=0){
 				console.log('logged metric number'+value.toString());
 				deviceDict[metricNumber.toString()] = value;
@@ -130,10 +125,14 @@ $(function() {
 				$('.mypopover').popover({ trigger: "hover focus" });
 				}
 			}
-			if($.inArray(metricNumber.toString(), percentileArray)>=0 ||$.inArray(metricNumber.toString(), percentArray)>=0)
+			if($.inArray(metricNumber.toString(), percentArray)>=0){
 				$(el).find('div.progress div').width(percentValueString);
 				$(el).find('div.progress div').text(percentValueString);
-				$(el).parent().find('span.ajaxtext').text(value);
+			}
+				//$(el).parent().find('span.ajaxtext').text(value);
+			else{
+				$(el).text(value);
+			}
 		}).fail(function() {
 			$(el).text('Not Found');
 		});
