@@ -4,18 +4,18 @@
 		<div class="row">
 			<div class="col-xs-4">
 				<h3>Bounce Rate</h3>
-				<h4><span class="ajax" metric="1">Loading&hellip;%</span></h4>
-				<h4><span class="ajax" metric="6">Loading&hellip;</span> percentile</h4>
+				<h4><span class="ajax" metric="1">Loading&hellip;</span></h4>
+				<h4><span class="ajax" metric="6">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-4">
 				<h3>Pages Per Session</h3>
 				<h4><span class="ajax" metric="10">Loading&hellip;</span></h4>
-				<h4><span class="ajax" metric="15">Loading&hellip;</span> percentile</h4>
+				<h4><span class="ajax" metric="15">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-4">
 				<h3>Loyal Visitors</h3>
-				<h4><span class="ajax" metric="8">Loading&hellip;%</span></h4>
-				<h4><span class="ajax" metric="9">Loading&hellip;</span> percentile</h4>
+				<h4><span class="ajax" metric="8">Loading&hellip;</span></h4>
+				<h4><span class="ajax" metric="9">Loading&hellip;</span></h4>
 			</div>
 		</div>
 		<p><a href="#" class="btn btn-primary btn-lg">More</a></p>
@@ -28,19 +28,19 @@
 		<div class="row">
 			<div class="col-xs-3">
 				<h3>Via Search</h3>
-				<h4><span class="ajax" metric="35">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="35">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-3">
 				<h3>Via Social</h3>
-				<h4><span class="ajax" metric="36">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="36">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-3">
 				<h3>Via Referral</h3>
-				<h4><span class="ajax" metric="34">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="34">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-3">
 				<h3>Via Direct Referral</h3>
-				<h4><span class="ajax" metric="31">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="31">Loading&hellip;</span></h4>
 			</div>
 		</div>
 		<p><a href="#" class="btn btn-primary btn-lg">More</a></p>
@@ -53,15 +53,15 @@
 		<div class="row">
 			<div class="col-xs-4">
 				<h3>On Desktop</h3>
-				<h4><span class="ajax" metric="30">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="30">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-4">
 				<h3>On Mobile</h3>
-				<h4><span class="ajax" metric="33">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="33">Loading&hellip;</span></h4>
 			</div>
 			<div class="col-xs-4">
 				<h3>On Tablet</h3>
-				<h4><span class="ajax" metric="37">Loading&hellip;%</span></h4>
+				<h4><span class="ajax" metric="37">Loading&hellip;</span></h4>
 			</div>
 		</div>
 		<p><a href="#" class="btn btn-primary btn-lg">More</a></p>
@@ -72,15 +72,42 @@
 
 <script>
 $(function() {
+	var percentArray = ['37','33','30','31','34','36','35','8','1'];
+	var percentileArray = ['6','9','15'];
+	//$.inArray(value, array)>=0
+	var value=0;
+	var originalValue=0;
+	var valueString = '';
+	var percentValueString = '';
+	var metricNumber='';
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
-			$(el).text(data.value.toFixed(0));
+			metricNumber =  $(el).attr('metric');
+			originalValue = data.value.toFixed(0);
+			value = data.value.toFixed(0);
+			valueString = value.toString();
+			percentValueString = valueString+'%'
+			if($.inArray(metricNumber, percentArray)>=0)
+			{
+				valueString = valueString + '%';
+				value = value/100;
+			}
+			else if($.inArray(metricNumber, percentileArray)>=0)
+			{
+				valueString = valueString + 'percentile';
+				value = value/100;
+			}
+			$(el).text(valueString);
+			if($.inArray(originalValue.toString, percentileArray)>=0 ||$.inArray(originalValue.toString(), percentArray)>=0)
+
 			$(el).append(
-      "<div class=\"progress\"><div class=\"progress-bar progress-bar-success mypopover\" role=\"progressbar\" aria-valuemin=\"0\" title=\"\" data-content=\"content here\" data-placement=\"bottom\"  data-toggle=\"popover\" data-original-title=\"personal title\" style=\"width: 50%; \">"+data.value.toFixed(0)/100+"</div></div>")
+      "<div class=\"progress\"><div class=\"progress-bar progress-bar-success mypopover\" role=\"progressbar\" aria-valuemin=\"0\" title=\"\" data-content=\"content here\" data-placement=\"bottom\"  data-toggle=\"popover\" data-original-title=\"personal title\" style=\"width: "+percentValueString+"; \">"+value+"</div></div>");
+	
 		}).fail(function() {
 			$(el).text('Not Found');
 		});
 	});
+	$('.mypopover').popover({ trigger: "hover focus" });
 });
 </script>
 
