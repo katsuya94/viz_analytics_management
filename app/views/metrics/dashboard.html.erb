@@ -79,23 +79,18 @@
 $(function() {
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
-			value = $(el).hasClass('smallnum') ? data.value.toFixed(2) : Math.round(data.value);
-
+			value = $(el).hasClass('smallnum') ? data.value.toFixed(2) : Math.floor(data.value);
 			if($(el).hasClass('text')) {
 				$(el).text(value + ($(el).hasClass('percent') ? '%' : ''));
 			}
-
 			if($(el).hasClass('bar')) {
 				$(el).find('div.progress div').width(value + '%').text(value + '%');
 			}
-
 			if($(el).hasClass('stackbar')) {
 				$(el).width(value + '%').text($(el).attr('label'));
 			}
 		}).fail(function() {
-			if($(el).hasClass('text')) {
-				$(el).text('Not Found');
-			}
+			$(el).text('Not Found');
 		});
 	});
 });
