@@ -87,7 +87,11 @@ $(function() {
 				$(el).text(value + ($(el).hasClass('percent') ? '%' : ''));
 			}
 			if($(el).hasClass('bar')) {
-				$(el).find('div.progress div').width(data.value + '%').text(value + '%');
+				$(el).find('div.progress div').width(data.value + '%');
+				if(data.value > 15)
+					$(el).find('div.progress div').text(value + '%');
+				else
+					$(el).find('div.progress').append(value + '%');
 			}
 			if($(el).hasClass('stackbar')) {
 				$(el).width(data.value + '%');
