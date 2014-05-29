@@ -41,13 +41,13 @@
 		<h1>Platform</h1>
 		<div class="row">
 			<div class="progress" stack="0">
-				<div class="progress-bar progress-bar-success ajax stackbar" metric="30" style="width: 0%">
+				<div class="progress-bar progress-bar-success ajax stackbar" metric="30" style="width: 0%" label="D">
 					Desktop
 				</div>
-				<div class="progress-bar progress-bar-warning ajax stackbar" metric="33" style="width: 0%">
+				<div class="progress-bar progress-bar-warning ajax stackbar" metric="33" style="width: 0%" label = "M">
 					Mobile
 				</div>
-				<div class="progress-bar progress-bar-danger ajax stackbar" metric="37" style="width: 0%">
+				<div class="progress-bar progress-bar-danger ajax stackbar" metric="37" style="width: 0%" label = "T">
 					Tablet
 				</div>
 			</div>	
@@ -94,7 +94,8 @@ $(function() {
 					$(el).find('div.progress').append(value + '%');
 			}
 			if($(el).hasClass('stackbar')) {
-				$(el).width(data.value + '%');
+				$(el).width(data.value + '%')
+				$(el).text($(el).attr('label')+': '+Math.floor(data.value)+'%')
 			}
 		}).fail(function() {
 			if($(el).hasClass('text'))
