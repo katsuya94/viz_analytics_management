@@ -1,7 +1,30 @@
 /* Place all the styles related to the Metrics controller here.
  * They will automatically be included in application.css.
  */
-
- .gauge-row div div {
- 	height: 250px;
- }
+ 
+ .progress {
+	height: 50px;
+	line-height: 50px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 18pt;
+}
+h3 {
+	margin: 0;
+	line-height: 50px;
+	vertical-align: middle;
+}
+.progress div {
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 18pt;
+}
+.progress-bar-success {
+	background-color: #5CB8B8;
+}
+.progress-bar-danger {
+	background-color: #5C5CB8;
+}
+.progress-bar-warning {
+	background-color: #B85CB8;
+}
