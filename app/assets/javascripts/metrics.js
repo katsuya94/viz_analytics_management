@@ -13,6 +13,7 @@ function suffix(n) {
 
 $(function() {
 	$('.tooltipme').tooltip();
+	$('.popoverme').popover();
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
 			var value = $(el).hasClass('smallnum') ? data.value.toFixed(2) : Math.floor(data.value);
