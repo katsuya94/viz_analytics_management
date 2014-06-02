@@ -19,4 +19,13 @@ class Datum < ActiveRecord::Base
 		end
 	end
 
+	def self.oldest(metric, company)
+		d = metric.get_datum(company)
+		return nil unless d
+		while d.previous
+			d = d.previous
+		end
+		d
+	end
+
 end
