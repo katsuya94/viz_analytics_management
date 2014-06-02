@@ -1,8 +1,8 @@
 /* Place all the styles related to the Metrics controller here.
  * They will automatically be included in application.css.
  */
- 
- .progress {
+
+.progress {
 	height: 50px;
 	line-height: 50px;
 	vertical-align: middle;
