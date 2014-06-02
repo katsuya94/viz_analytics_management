@@ -5,7 +5,13 @@ class MetricsController < ApplicationController
 	def dashboard
 	end
 
-	def details
+	def engagement
+	end
+
+	def acquisition
+	end
+
+	def platform
 	end
 
 	def metric
