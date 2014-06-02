@@ -51,19 +51,11 @@
 	</div>
 	<div class="col-xs-6">
 		<h1>Platform</h1>
-		<div class="row">
-			<div class="progress" stack="0">
-				<div class="progress-bar progress-bar-success ajax stackbar" metric="30" style="width: 0%" label="D">
-					Desktop
-				</div>
-				<div class="progress-bar progress-bar-warning ajax stackbar" metric="33" style="width: 0%" label = "M">
-					Mobile
-				</div>
-				<div class="progress-bar progress-bar-danger ajax stackbar" metric="37" style="width: 0%" label = "T">
-					Tablet
-				</div>
-			</div>	
-		</div>
+		<div class="progress" id="platform">
+			<div class="progress-bar progress-bar-success ajax stackbar" metric="30" style="width: 0%" data-toggle="tooltip" data-placement="top" title="Desktop"><i class="fa fa-desktop"></i> </div>
+			<div class="progress-bar progress-bar-warning ajax stackbar" metric="33" style="width: 0%" data-toggle="tooltip" data-placement="top" title="Mobile"><i class="fa fa-mobile"></i> </div>
+			<div class="progress-bar progress-bar-danger ajax stackbar" metric="37" style="width: 0%" data-toggle="tooltip" data-placement="top" title="Tablet"><i class="fa fa-tablet"></i> </div>
+		</div>	
 		<p><a href="#" class="btn btn-primary btn-lg">More</a></p>
 	</div>
 </div>
@@ -103,6 +95,7 @@
 var possessive = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
 
 $(function() {
+	$('#platform').children().tooltip();
 	$('.ajax').each(function(i, el) {
 		$.getJSON(sprintf('/metrics/metric/%s', $(el).attr('metric')), function(data) {
 			var value = $(el).hasClass('smallnum') ? data.value.toFixed(2) : Math.floor(data.value);
@@ -119,7 +112,7 @@ $(function() {
 			}
 			if($(el).hasClass('stackbar')) {
 				$(el).width(data.value + '%')
-				$(el).text($(el).attr('label')+': '+Math.floor(data.value)+'%')
+				$(el).append(value + '%')
 			}
 			if($(el).hasClass('percentile')) {
 				var left = Math.min(98, Math.max(0, data.value - 1));
