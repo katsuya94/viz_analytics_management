@@ -1,2 +1,73 @@
-<h1>Metrics#details</h1>
-<p>Find me in app/views/metrics/details.html.erb</p>
+<h1>Bounce Rate</h1>
+<div class="row">
+	<div class="col-xs-6">
+		<h3>Bounce Rate</h3>
+		<div class="progress ajax bar" metric="1">
+			<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+		</div>
+		<h3>Expected Bounce Rate</h3>
+		<div class="progress ajax bar" metric="4">
+			<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<h3>By Platform</h3>
+		<div class="row">
+			<div class="col-xs-2"><h4>Desktop</h4></div>
+			<div class="col-xs-10"><div class="progress ajax bar" metric="2"><div class="progress-bar progress-bar-success" style="width: 0%; "></div></div></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2"><h4>Mobile</h4></div>
+			<div class="col-xs-10"><div class="progress ajax bar" metric="5"><div class="progress-bar progress-bar-warning" style="width: 0%; "></div></div></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2"><h4>Tablet</h4></div>
+			<div class="col-xs-10"><div class="progress ajax bar" metric="7"><div class="progress-bar progress-bar-danger" style="width: 0%; "></div></div></div>
+		</div>
+	</div>
+</div>
+<h3><span class="ajax percent relation minimize" metric="3"></span> than expected</h3>
+<div class="progress ajax percentile" metric="6">
+	<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+	<div class="progress-bar progress-bar-warning" style="width: 0%; "></div>
+	<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+</div>
+
+<h1>Pages Per Session</h1>
+<div class="row">
+	<div class="col-xs-6">
+		<h3>Pages Per Session</h3>
+		<h3><span class="ajax text smallnum" metric="10">&hellip;</span></h3>
+		<h3>Expected Pages Per Session</h3>
+		<h3><span class="ajax text smallnum" metric="13">&hellip;</span></h3>
+	</div>
+	<div class="col-xs-6">
+		<h3>By Platform</h3>
+		<div class="row">
+			<div class="col-xs-2"><h4>Desktop</h4></div>
+			<div class="col-xs-10"><h3><span class="ajax text smallnum" metric="11">&hellip;</span></h3></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2"><h4>Mobile</h4></div>
+			<div class="col-xs-10"><h3><span class="ajax text smallnum" metric="14">&hellip;</span></h3></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2"><h4>Tablet</h4></div>
+			<div class="col-xs-10"><h3><span class="ajax text smallnum" metric="16">&hellip;</span></h3></div>
+		</div>
+	</div>
+</div>
+<h3><span class="ajax percent relation maximize" metric="12"></span> than expected</h3>
+<div class="progress ajax percentile" metric="15">
+	<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+	<div class="progress-bar progress-bar-warning" style="width: 0%; "></div>
+	<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+</div>
+
+<h1>Loyal Visitors</h1>
+<div class="progress ajax bar" metric="8"><div class="progress-bar progress-bar-success" style="width: 0%; "></div></div>
+<div class="progress ajax percentile" metric="9">
+	<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+	<div class="progress-bar progress-bar-warning" style="width: 0%; "></div>
+	<div class="progress-bar progress-bar-success" style="width: 0%; "></div>
+</div>
