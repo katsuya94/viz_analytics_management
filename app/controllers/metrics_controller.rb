@@ -8,12 +8,6 @@ class MetricsController < ApplicationController
 	def engagement
 	end
 
-	def acquisition
-	end
-
-	def platform
-	end
-
 	def metric
 		c = current_user.company
 		m = Metric.find(params[:metric]).class
