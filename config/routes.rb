@@ -4,6 +4,5 @@ VizAnalytics::Application.routes.draw do
   get "metrics/dashboard"
   get "metrics/engagement"
   get "metrics/acquisition"
-  get "metrics/platform"
   get "metrics/metric/:metric", to: "metrics#metric"
 end
