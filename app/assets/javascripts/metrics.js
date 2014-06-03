@@ -48,9 +48,9 @@ $(function() {
 				$(el).children().eq(1).width('2%');
 				$(el).children().eq(2).width(right + '%');
 				if (left > right) {
-					$(el).children().eq(0).html(value + suffix(value) + '&nbsp;').css('text-align', 'right');
+					$(el).children().eq(0).html(value + suffix(value) + ($(el).hasClass('verbose') ? ' percentile' : '') + '&nbsp;').css('text-align', 'right');
 				} else {
-					$(el).children().eq(2).html('&nbsp;' + value + suffix(value)).css('text-align', 'left');
+					$(el).children().eq(2).html('&nbsp;' + value + suffix(value) + ($(el).hasClass('verbose') ? ' percentile' : '')).css('text-align', 'left');
 				}
 			}
 		}).fail(function() {
