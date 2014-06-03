@@ -37,4 +37,8 @@ class Metric < ActiveRecord::Base
 		instance.save
 	end
 
+	def self.average
+		self.first.data.average(:value)
+	end
+
 end
