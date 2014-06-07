@@ -41,4 +41,28 @@ class Metric < ActiveRecord::Base
 		self.first.data.average(:value)
 	end
 
+	def self.oldest(company)
+		d = self.get_datum(company)
+		id = ActiveRecord::Base.connection.execute(self.recursive(d)).to_a.last['id']
+		Datum.find(id)
+	end
+
+	def self.past(company)
+		d = self.get_datum(company)
+		Datum.where("#{Datum.table_name}.id IN (#{self.recursive(d)})")
+	end
+
+	def self.recursive(d)
+		<<-SQL
+			WITH RECURSIVE recurse(id, previous_id) AS (
+				SELECT #{Datum.table_name}.id, #{Datum.table_name}.previous_id
+				FROM #{Datum.table_name}
+				WHERE id = #{d.id}
+				UNION ALL
+				SELECT #{Datum.table_name}.id, #{Datum.table_name}.previous_id
+				FROM recurse JOIN #{Datum.table_name} ON recurse.previous_id = #{Datum.table_name}.id
+			) SELECT id FROM recurse
+		SQL
+	end
+
 end

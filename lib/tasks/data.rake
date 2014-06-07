@@ -8,7 +8,7 @@ namespace :data do
 		Company.all.each do |c|
 			puts c.url
 			list.each do |m|
-				d = Datum.oldest(m, c)
+				d = m.oldest(c)
 				next unless d
 				_d = Datum.new :value => d.value * prng.rand(0.9..1.1), :metric => d.metric, :company => d.company
 				_d.save
