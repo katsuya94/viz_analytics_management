@@ -28,7 +28,7 @@ class Metric < ActiveRecord::Base
 		recent.datum = new_datum if defined? :new_datum
 		recent.save
 
-		return new_datum
+		return new_datum if defined? :new_datum
 	end
 
 	def self.singleton(description = nil)
