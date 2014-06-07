@@ -21,7 +21,7 @@ class MetricsController < ApplicationController
 
 	def history
 		c = current_user.company
-		m = Metric.find(params[:metric]).class
-		@data = m.past(c)
+		@m = Metric.find(params[:metric]).class
+		@data = @m.past(c).order(:created_at).map { |d| [d.created_at.utc.to_i * 1000, d.value] }
 	end
 end
