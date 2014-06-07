@@ -2,8 +2,8 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 //
-//= require justgage.1.0.1.min
-//= require raphael.2.1.0.min
+//= require highcharts
+
 var suffixes = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
 function suffix(n) {
 	if (~~(n / 10) === 1)
