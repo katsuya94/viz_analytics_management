@@ -18,4 +18,10 @@ class MetricsController < ApplicationController
 			render :json => { :timestamp => d.created_at, :value => d.value }
 		end
 	end
+
+	def history
+		c = current_user.company
+		m = Metric.find(params[:metric]).class
+		@data = m.past(c)
+	end
 end
