@@ -24,9 +24,6 @@ gem 'pg'
 # Query Getter Server with Typhoeus
 gem 'typhoeus'
 
-# Pickle
-gem 'pickle'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -35,9 +32,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # Front End
-
-# Use highcharts to display charts
-gem 'highcharts-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

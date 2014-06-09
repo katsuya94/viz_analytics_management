@@ -20,7 +20,7 @@ namespace :worker do
 		Raw.subclasses.each do |m|
 			instance = m.first
 			puts "vizanalytics.herokuapp.com/#{m.url}"
-			response = Typhoeus.get("vizanalytics.herokuapp.com/#{m.url}")
+			response = Typhoeus.post("vizanalytics.herokuapp.com/#{m.url}", body: { password: ENV['GETTER_PASSWORD'] })
 			next unless response.success?
 			data = JSON.parse response.body
 			data.each_pair do |key, value|
