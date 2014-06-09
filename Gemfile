@@ -24,6 +24,9 @@ gem 'pg'
 # Query Getter Server with Typhoeus
 gem 'typhoeus'
 
+# Pickle
+gem 'pickle'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 # Use Uglifier as compressor for JavaScript assets
