@@ -1,11 +1,19 @@
+# Base Metric. Gets data if current data is nonexistant/old.
+
+# get_value must be implemented in subclasses.
+
 class Metric < ActiveRecord::Base
 
 	private_class_method :new
+
+	# Lifetime must be defined for every metric, it will automatically update data if old.
 
 	class_attribute :lifetime
 
 	has_many :recents
 	has_many :data, :through => :recents
+
+	# Get new data if Recent is old/nonexistant.
 
 	def self.get_datum(company)
 		instance = self.first
@@ -31,15 +39,21 @@ class Metric < ActiveRecord::Base
 		return new_datum if defined? :new_datum
 	end
 
+	# Initializes a single instance.
+
 	def self.singleton(description = nil)
 		return unless self.first.nil?
 		instance = new :description => (description ? description : '')
 		instance.save
 	end
 
+	# Gets the average of most its recent data.
+
 	def self.average
 		self.first.data.average(:value)
 	end
+
+	# Finds the oldest datum via linked list.
 
 	def self.oldest(company)
 		d = self.get_datum(company)
@@ -47,10 +61,14 @@ class Metric < ActiveRecord::Base
 		Datum.find(id)
 	end
 
+	# Finds all past data via linked list.
+
 	def self.past(company)
 		d = self.get_datum(company)
 		Datum.where("#{Datum.table_name}.id IN (#{self.recursive(d)})")
 	end
+
+	# Recursive query.
 
 	def self.recursive(d)
 		<<-SQL

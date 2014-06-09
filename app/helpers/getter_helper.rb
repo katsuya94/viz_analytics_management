@@ -1,6 +1,8 @@
 require 'typhoeus'
 require 'json'
 
+# Helper for getting data from the Getter Server.
+
 module GetterHelper
 
 	def self.get(metric, url)

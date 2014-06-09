@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class Metric - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-average">::average</a>
+    
+    <li ><a href="#method-c-get_datum">::get_datum</a>
+    
+    <li ><a href="#method-c-oldest">::oldest</a>
+    
+    <li ><a href="#method-c-past">::past</a>
+    
+    <li ><a href="#method-c-recursive">::recursive</a>
+    
+    <li ><a href="#method-c-singleton">::singleton</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Metric">
+  <h1 id="class-Metric" class="class">
+    class Metric
+  </h1>
+
+  <section class="description">
+    
+<p>get_value must be implemented in subclasses.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-average" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">average</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the average of most its recent data.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="average-source">
+            <pre><span class="ruby-comment"># File app/models/metric.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">average</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">data</span>.<span class="ruby-identifier">average</span>(<span class="ruby-value">:value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-get_datum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_datum</span><span
+            class="method-args">(company)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get new data if <a href="Recent.html">Recent</a> is old/nonexistant.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_datum-source">
+            <pre><span class="ruby-comment"># File app/models/metric.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_datum</span>(<span class="ruby-identifier">company</span>)
+        <span class="ruby-identifier">instance</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">first</span>
+
+        <span class="ruby-identifier">recent</span> = <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">recents</span>.<span class="ruby-identifier">with_company</span>(<span class="ruby-identifier">company</span>).<span class="ruby-identifier">first</span>
+        
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">recent</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-identifier">recent</span> = <span class="ruby-constant">Recent</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:metric</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">instance</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">recent</span>.<span class="ruby-identifier">datum</span>.<span class="ruby-identifier">old?</span>
+                <span class="ruby-keyword">return</span> <span class="ruby-identifier">recent</span>.<span class="ruby-identifier">datum</span>
+        <span class="ruby-keyword">end</span>
+        
+        <span class="ruby-identifier">value</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_value</span>(<span class="ruby-identifier">company</span>)
+
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-identifier">new_datum</span> = <span class="ruby-constant">Datum</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>, <span class="ruby-value">:metric</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">instance</span>, <span class="ruby-value">:company</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">company</span>, <span class="ruby-value">:previous</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">recent</span>.<span class="ruby-identifier">datum</span>
+                <span class="ruby-identifier">new_datum</span>.<span class="ruby-identifier">save</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">recent</span>.<span class="ruby-identifier">datum</span> = <span class="ruby-identifier">new_datum</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span> <span class="ruby-operator">:</span><span class="ruby-identifier">new_datum</span>
+        <span class="ruby-identifier">recent</span>.<span class="ruby-identifier">save</span>
+
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">new_datum</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">defined?</span> <span class="ruby-operator">:</span><span class="ruby-identifier">new_datum</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-oldest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">oldest</span><span
+            class="method-args">(company)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds the oldest datum via linked list.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="oldest-source">
+            <pre><span class="ruby-comment"># File app/models/metric.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">oldest</span>(<span class="ruby-identifier">company</span>)
+        <span class="ruby-identifier">d</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_datum</span>(<span class="ruby-identifier">company</span>)
+        <span class="ruby-identifier">id</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">recursive</span>(<span class="ruby-identifier">d</span>)).<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">last</span>[<span class="ruby-string">&#39;id&#39;</span>]
+        <span class="ruby-constant">Datum</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-past" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">past</span><span
+            class="method-args">(company)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds all past data via linked list.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="past-source">
+            <pre><span class="ruby-comment"># File app/models/metric.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">past</span>(<span class="ruby-identifier">company</span>)
+        <span class="ruby-identifier">d</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_datum</span>(<span class="ruby-identifier">company</span>)
+        <span class="ruby-constant">Datum</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{Datum.table_name}.id IN (#{self.recursive(d)})&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-recursive" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recursive</span><span
+            class="method-args">(d)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Recursive query.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="recursive-source">
+            <pre><span class="ruby-comment"># File app/models/metric.rb, line 73</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">recursive</span>(<span class="ruby-identifier">d</span>)
+        <span class="ruby-value">&lt;&lt;-SQL
+                WITH RECURSIVE recurse(id, previous_id) AS (
+                        SELECT #{Datum.table_name}.id, #{Datum.table_name}.previous_id
+                        FROM #{Datum.table_name}
+                        WHERE id = #{d.id}
+                        UNION ALL
+                        SELECT #{Datum.table_name}.id, #{Datum.table_name}.previous_id
+                        FROM recurse JOIN #{Datum.table_name} ON recurse.previous_id = #{Datum.table_name}.id
+                ) SELECT id FROM recurse
+        SQL</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-singleton" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">singleton</span><span
+            class="method-args">(description = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes a single instance.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="singleton-source">
+            <pre><span class="ruby-comment"># File app/models/metric.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">singleton</span>(<span class="ruby-identifier">description</span> = <span class="ruby-keyword">nil</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">instance</span> = <span class="ruby-identifier">new</span> <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-identifier">description</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">description</span> <span class="ruby-operator">:</span> <span class="ruby-string">&#39;&#39;</span>)
+        <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

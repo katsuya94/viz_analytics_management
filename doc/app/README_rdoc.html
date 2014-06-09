@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>README - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-README">README</a>
+    <li><a href="#label-WARNING">WARNING</a>
+    <li><a href="#label-Setup">Setup</a>
+    <li><a href="#label-Ruby+Setup">Ruby Setup</a>
+    <li><a href="#label-Database+Setup">Database Setup</a>
+    <li><a href="#label-Environment">Environment</a>
+    <li><a href="#label-Running">Running</a>
+    <li><a href="#label-Controllers">Controllers</a>
+    <li><a href="#label-Metrics">Metrics</a>
+    <li><a href="#label-User+Management">User Management</a>
+    <li><a href="#label-Tasks">Tasks</a>
+    <li><a href="#label-Deployment">Deployment</a>
+    <li><a href="#label-TODO">TODO</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.rdoc">
+
+<h2 id="label-README"><a href="README_rdoc.html">README</a><span><a href="#label-README">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<h3 id="label-WARNING">WARNING<span><a href="#label-WARNING">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Understanding this app requires a reasonable understanding of Rails and
+Ruby.</p>
+
+<h3 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<h4 id="label-Ruby+Setup">Ruby Setup<span><a href="#label-Ruby+Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>This project uses Ruby 2.0.0-p247 as defined in .rbenv-version, we
+recommend using rbenv to handle multiple versions of ruby. This project
+uses bundler to manage gems run <code>gem install bundler</code> to
+install. After installing these, install dependencies with <code>bundle
+install</code>. The versioning control system is git.</p>
+
+<h4 id="label-Database+Setup">Database Setup<span><a href="#label-Database+Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>This project is designed to work with PostgreSQL.</p>
+
+<p>config/database.yml should look like &lt;tt&gt; development:</p>
+
+<pre>adapter: postgresql
+encoding: unicode
+database: dbname
+pool: pool
+host: hostname
+port: port (usually 5432)
+username: dbusername
+password: dbpassword</pre>
+
+<p># Warning: The database defined as “test” will be erased and # re-generated
+from your development database when you run “rake”. # Do not set this db to
+the same as development or production. test:</p>
+
+<pre>adapter: sqlite3
+database: db/test.sqlite3
+pool: 5
+timeout: 5000</pre>
+
+<p>&lt;/tt&gt;</p>
+
+<p>After connecting the database run <code>rake db:create</code> Then run
+<code>rake metrics:init</code></p>
+
+<h4 id="label-Environment">Environment<span><a href="#label-Environment">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>.env should look like <code> RACK_ENV=development PORT=3000
+SECRET_KEY=keyGeneratedWithRakeSecret GETTER_PASSWORD=getterServerPassword
+</code></p>
+
+<p>Make sure you generate a key with <code>rake secret</code>.</p>
+
+<h4 id="label-Running">Running<span><a href="#label-Running">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<p>With the Heroku toolbelt installed use <code>foreman start</code> to run
+VizAnalytics from Procfile Without Heroku installed use <code>rails
+server</code> to run locally</p>
+
+<h3 id="label-Controllers">Controllers<span><a href="#label-Controllers">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<ul><li>
+<p><a href="GuestController.html">GuestController</a></p>
+</li><li>
+<p><a href="HistoryController.html">HistoryController</a></p>
+</li><li>
+<p><a href="MetricsController.html">MetricsController</a></p>
+</li></ul>
+
+<h3 id="label-Metrics">Metrics<span><a href="#label-Metrics">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<ul><li>
+<p><a href="Raw.html">Raw</a></p>
+</li><li>
+<p><a href="Calculated.html">Calculated</a></p>
+</li><li>
+<p><a href="Percentile.html">Percentile</a></p>
+</li></ul>
+
+<p>All metric definitions are made in app/models/definitions</p>
+
+<p>Use <code>rails g percentile MetricName</code> to generate a percentile
+metric for MetricName.</p>
+
+<p>For examples of model definitions, look in the app/models/definitions
+directory</p>
+
+<h3 id="label-User+Management"><a href="User.html">User</a> Management<span><a href="#label-User+Management">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>After adding a new user to the Getter Server… Open up <code>rails
+console</code> and create new users like this.</p>
+
+<p><code> company = Company.new(:name =&gt; &#39;name&#39;, :url =&gt;
+&#39;getter hash key&#39;) company.save user = User.new(:username =&gt;
+&#39;username&#39;, :email =&gt; &#39;test@example.com&#39;, :password
+=&gt; &#39;password&#39;, :password_confirmation =&gt; &#39;password&#39;,
+:company =&gt; company) user.save </code></p>
+
+<h3 id="label-Tasks">Tasks<span><a href="#label-Tasks">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>rake worker:update_raw</code> then <code>rake
+worker:update_calculated</code> should be run every week. These may take a
+long time. <code>rake metrics:init</code> Initializes the singleton
+database records for all definitions in app/models/definitions.</p>
+
+<h3 id="label-Deployment">Deployment<span><a href="#label-Deployment">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Make sure the Heroku toolbelt is installed, as outlined in Heroku&#39;s
+documentation.</p>
+
+<p>Set config variables with <code>heroku config:set VAR=value</code> Setting
+the DATABASE_URL config variable in Heroku selects the database used for
+production. The other config variables should mirror .env</p>
+
+<p>After getting permissions and commiting changes, use <code>git push heroku
+master</code> to push changes live on viz-analytics.herokuapp.com</p>
+
+<p>Use <code>heroku run [cmd]</code> to run tasks on the server.</p>
+
+<h3 id="label-TODO">TODO<span><a href="#label-TODO">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>A graphical interface for viewing change in metrics over time has been
+half-implemented in the <a
+href="HistoryController.html">HistoryController</a>.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

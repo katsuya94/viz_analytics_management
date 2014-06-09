@@ -23,7 +23,7 @@
 
 			<% if user_signed_in? %>
 				<p class="navbar-text navbar-right">
-					<%= current_user.company.url %> | <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>        
+					<%= current_user.company.name %> | <%= link_to('Sign out', destroy_user_session_path, :method => :delete) %>        
 				</p>
 			<% else %>
 				<p class="navbar-text navbar-right">

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class HistoryController - Rails Application Documentation</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-add">#add</a>
+    
+    <li ><a href="#method-i-average">#average</a>
+    
+    <li ><a href="#method-i-bouncerate">#bouncerate</a>
+    
+    <li ><a href="#method-i-bouncerateplatform">#bouncerateplatform</a>
+    
+    <li ><a href="#method-i-setup">#setup</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-HistoryController">
+  <h1 id="class-HistoryController" class="class">
+    class HistoryController
+  </h1>
+
+  <section class="description">
+    
+<p>TODO: Half-implemented change over time visualization.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add</span><span
+            class="method-args">(metric)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Denotes that a metric should be present on the chart.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add-source">
+            <pre><span class="ruby-comment"># File app/controllers/history_controller.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">metric</span>)
+        <span class="ruby-ivar">@series</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:data</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">metric</span>.<span class="ruby-identifier">past</span>(<span class="ruby-ivar">@c</span>).<span class="ruby-identifier">order</span>(<span class="ruby-value">:created_at</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">d</span>.<span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>, <span class="ruby-identifier">d</span>.<span class="ruby-identifier">value</span>] } }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-average" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">average</span><span
+            class="method-args">(metric)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Denotes that a bar with an average for this metric should be shown.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="average-source">
+            <pre><span class="ruby-comment"># File app/controllers/history_controller.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">average</span>(<span class="ruby-identifier">metric</span>)
+        <span class="ruby-ivar">@average</span> = <span class="ruby-identifier">metric</span>.<span class="ruby-identifier">average</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bouncerate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bouncerate</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="bouncerate-source">
+            <pre><span class="ruby-comment"># File app/controllers/history_controller.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bouncerate</span>
+        <span class="ruby-identifier">setup</span> <span class="ruby-string">&#39;Bounce Rate&#39;</span>, <span class="ruby-string">&#39;Percent&#39;</span>, <span class="ruby-string">&#39;%&#39;</span>
+        <span class="ruby-identifier">add</span> <span class="ruby-constant">BounceRate</span>
+        <span class="ruby-identifier">average</span> <span class="ruby-constant">BounceRate</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;history/index&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-bouncerateplatform" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bouncerateplatform</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="bouncerateplatform-source">
+            <pre><span class="ruby-comment"># File app/controllers/history_controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bouncerateplatform</span>
+        <span class="ruby-identifier">setup</span> <span class="ruby-string">&#39;Bounce Rate by Platform&#39;</span>, <span class="ruby-string">&#39;Percent&#39;</span>, <span class="ruby-string">&#39;%&#39;</span>
+        <span class="ruby-identifier">add</span> <span class="ruby-constant">BounceRateDesktop</span>
+        <span class="ruby-identifier">add</span> <span class="ruby-constant">BounceRateMobile</span>
+        <span class="ruby-identifier">add</span> <span class="ruby-constant">BounceRateTablet</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-string">&#39;history/index&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setup</span><span
+            class="method-args">(title, units, suffix)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes variables needed to display highcharts.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="setup-source">
+            <pre><span class="ruby-comment"># File app/controllers/history_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>(<span class="ruby-identifier">title</span>, <span class="ruby-identifier">units</span>, <span class="ruby-identifier">suffix</span>)
+        <span class="ruby-ivar">@c</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">company</span>
+        <span class="ruby-ivar">@series</span> = []
+        <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+        <span class="ruby-ivar">@units</span> = <span class="ruby-identifier">units</span>
+        <span class="ruby-ivar">@suffix</span> = <span class="ruby-identifier">suffix</span>
+        <span class="ruby-ivar">@average</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

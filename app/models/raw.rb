@@ -1,6 +1,10 @@
+# Metric that take values directly from the Getter Server
+
 class Raw < Metric
 
 	class_attribute :url
+
+	# Defines the referenced url on the getter server.
 
 	def self.references(url)
 		self.url = url

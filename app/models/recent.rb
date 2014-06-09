@@ -1,3 +1,5 @@
+# Joins Metrics to their most recent Datum for each company.
+
 class Recent < ActiveRecord::Base
 
 	belongs_to :metric

@@ -1,3 +1,5 @@
+# Represents a Company.
+
 class Company < ActiveRecord::Base
 
 	has_many :data, :dependent => :destroy

@@ -1,6 +1,10 @@
+# Allows Metric to define custom calculations based on a number of other metrics.
+
 class Calculated < Metric
 
 	class_attribute :dependencies
+
+	# Defines dependencies
 
 	def self.depends_on(classname)
 		self.dependencies = Array.new if self.dependencies.nil?
@@ -16,6 +20,8 @@ class Calculated < Metric
 		end
 		return self.calculate(sources)
 	end
+
+	# Defines calculations, must return a numerical value using the hash of parent metric values.
 
 	def self.calculate(sources)
 	end

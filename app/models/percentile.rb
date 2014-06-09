@@ -1,12 +1,18 @@
+# Metric that is calculated from other recent datum of the referenced metric. Accounts for metrics that should be minimized / maximized.
+
 class Percentile < Metric
 
 	class_attribute :reference
 	class_attribute :comparison
 
+	# Defines direction.
+
 	def self.direction(symbol)
 		self.comparison = '<' if symbol == :maximize
 		self.comparison = '>' if symbol == :minimize
 	end
+
+	# Defines the referenced Metric
 
 	def self.references(classname)
 		self.reference = classname.to_s.camelize.constantize
