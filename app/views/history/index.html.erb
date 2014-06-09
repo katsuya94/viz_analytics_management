@@ -1,0 +1,39 @@
+<% content_for :head do %>
+<script>
+$(function() {
+	$('#chart').highcharts({
+		chart: {
+			type: 'line'
+		},
+		title: {
+			text: '<%= @title %>'
+		},
+		xAxis: {
+			type: 'datetime'
+		},
+		yAxis: {
+			title: {
+				text: '<%= @units %>'
+			},
+			labels: {
+				format: '{value}<%= @suffix %>'
+			},
+			allowDecimals: false,
+
+		},
+		series: <%= raw @series.to_json %>,
+		legend: {
+			enabled: false
+		},
+		tooltip: {
+			xDateFormat: '%b %e',
+			valueDecimals: 2,
+			valueSuffix: '<%= @suffix %>',
+			pointFormat: '{point.y}'
+		}
+	});
+});
+</script>
+<% end %>
+
+<div class="container" id="chart"></div>
