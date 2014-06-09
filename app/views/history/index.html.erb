@@ -19,7 +19,13 @@ $(function() {
 				format: '{value}<%= @suffix %>'
 			},
 			allowDecimals: false,
-
+			<% unless @average.nil? %>
+			plotLines: [{
+				color: '#FF0000',
+				width: 2,
+				value: <%= @average %>
+			}],
+			<% end %>
 		},
 		series: <%= raw @series.to_json %>,
 		legend: {

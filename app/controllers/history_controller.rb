@@ -6,6 +6,7 @@ class HistoryController < ApplicationController
 		@title = title
 		@units = units
 		@suffix = suffix
+		@average = nil
 	end
 
 	def add(metric)
@@ -19,6 +20,15 @@ class HistoryController < ApplicationController
 	def bouncerate
 		setup 'Bounce Rate', 'Percent', '%'
 		add BounceRate
+		average BounceRate
+		render 'history/index'
+	end
+
+	def bouncerateplatform
+		setup 'Bounce Rate by Platform', 'Percent', '%'
+		add BounceRateDesktop
+		add BounceRateMobile
+		add BounceRateTablet
 		render 'history/index'
 	end
 

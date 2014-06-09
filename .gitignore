@@ -17,4 +17,7 @@
 
 # Ignore documentation
 /doc
+
 .env
+
+private_key

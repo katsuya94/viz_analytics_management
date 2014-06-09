@@ -1,28 +1,36 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+=== Setup
 
-Things you may want to cover:
+==== Ruby Setup
 
-* Ruby version
+This project uses Ruby 2.0.0-p247 as defined in .rbenv-version, we recommend using rbenv to handle multiple versions of ruby.
+This project uses bundler to manage gems run <tt>gem install bundler</tt> to install
 
-* System dependencies
+=== Controllers
 
-* Configuration
+* GuestController
+* HistoryController
+* MetricsController
 
-* Database creation
+=== Metrics
 
-* Database initialization
+* Raw
+* Calculated
+* Percentile
 
-* How to run the test suite
+All metric definitions are made in app/models/definitions
 
-* Services (job queues, cache servers, search engines, etc.)
+Use <tt>rails g percentile MetricName</tt> to generate a percentile metric for MetricName.
 
-* Deployment instructions
+=== User Management
 
-* ...
+=== Tasks
 
+* <tt>rake worker:update_raw</tt> then <tt>rake worker:update_calculated</tt> should be run every week. These may take a long time.
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* <tt>
+
+=== Deployment
+
+Use <tt>heroku run [cmd]</tt> to run tasks on the server.
