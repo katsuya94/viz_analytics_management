@@ -66,6 +66,7 @@
     <li><a href="#label-Environment">Environment</a>
     <li><a href="#label-Running">Running</a>
     <li><a href="#label-Controllers">Controllers</a>
+    <li><a href="#label-Models">Models</a>
     <li><a href="#label-Metrics">Metrics</a>
     <li><a href="#label-User+Management">User Management</a>
     <li><a href="#label-Tasks">Tasks</a>
@@ -91,16 +92,16 @@
 
 <main role="main" aria-label="Page README.rdoc">
 
-<h2 id="label-README"><a href="README_rdoc.html">README</a><span><a href="#label-README">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h1 id="label-README"><a href="README_rdoc.html">README</a><span><a href="#label-README">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
-<h3 id="label-WARNING">WARNING<span><a href="#label-WARNING">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-WARNING">WARNING<span><a href="#label-WARNING">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Understanding this app requires a reasonable understanding of Rails and
 Ruby.</p>
 
-<h3 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
-<h4 id="label-Ruby+Setup">Ruby Setup<span><a href="#label-Ruby+Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h3 id="label-Ruby+Setup">Ruby Setup<span><a href="#label-Ruby+Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This project uses Ruby 2.0.0-p247 as defined in .rbenv-version, we
 recommend using rbenv to handle multiple versions of ruby. This project
@@ -108,50 +109,52 @@ uses bundler to manage gems run <code>gem install bundler</code> to
 install. After installing these, install dependencies with <code>bundle
 install</code>. The versioning control system is git.</p>
 
-<h4 id="label-Database+Setup">Database Setup<span><a href="#label-Database+Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h3 id="label-Database+Setup">Database Setup<span><a href="#label-Database+Setup">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>This project is designed to work with PostgreSQL.</p>
 
-<p>config/database.yml should look like &lt;tt&gt; development:</p>
+<p>config/database.yml should look like</p>
 
-<pre>adapter: postgresql
-encoding: unicode
-database: dbname
-pool: pool
-host: hostname
-port: port (usually 5432)
-username: dbusername
-password: dbpassword</pre>
+<pre>development:
+  adapter: postgresql
+  encoding: unicode
+  database: dbname
+  pool: pool
+  host: hostname
+  port: port (usually 5432)
+  username: dbusername
+  password: dbpassword
 
-<p># Warning: The database defined as “test” will be erased and # re-generated
-from your development database when you run “rake”. # Do not set this db to
-the same as development or production. test:</p>
-
-<pre>adapter: sqlite3
-database: db/test.sqlite3
-pool: 5
-timeout: 5000</pre>
-
-<p>&lt;/tt&gt;</p>
+# Warning: The database defined as &quot;test&quot; will be erased and
+# re-generated from your development database when you run &quot;rake&quot;.
+# Do not set this db to the same as development or production.
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000</pre>
 
 <p>After connecting the database run <code>rake db:create</code> Then run
 <code>rake metrics:init</code></p>
 
-<h4 id="label-Environment">Environment<span><a href="#label-Environment">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h3 id="label-Environment">Environment<span><a href="#label-Environment">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
-<p>.env should look like <code> RACK_ENV=development PORT=3000
-SECRET_KEY=keyGeneratedWithRakeSecret GETTER_PASSWORD=getterServerPassword
-</code></p>
+<p>.env should look like</p>
+
+<pre>RACK_ENV=development
+PORT=3000
+SECRET_KEY=keyGeneratedWithRakeSecret
+GETTER_PASSWORD=getterServerPassword</pre>
 
 <p>Make sure you generate a key with <code>rake secret</code>.</p>
 
-<h4 id="label-Running">Running<span><a href="#label-Running">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+<h3 id="label-Running">Running<span><a href="#label-Running">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
 
 <p>With the Heroku toolbelt installed use <code>foreman start</code> to run
 VizAnalytics from Procfile Without Heroku installed use <code>rails
 server</code> to run locally</p>
 
-<h3 id="label-Controllers">Controllers<span><a href="#label-Controllers">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-Controllers">Controllers<span><a href="#label-Controllers">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p><a href="GuestController.html">GuestController</a></p>
 </li><li>
@@ -160,7 +163,33 @@ server</code> to run locally</p>
 <p><a href="MetricsController.html">MetricsController</a></p>
 </li></ul>
 
-<h3 id="label-Metrics">Metrics<span><a href="#label-Metrics">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-Models">Models<span><a href="#label-Models">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<dl class="rdoc-list label-list"><dt><a href="Metric.html">Metric</a>
+<dd>
+<p>Uses Single Table Inheritance to exhibit different behavior for different
+classes. Encapsulates logic for querying/getting new <a
+href="Datum.html">Datum</a>.</p>
+</dd><dt><a href="Datum.html">Datum</a>
+<dd>
+<p>Holds a value and a timestamp corresponding to a <a
+href="Metric.html">Metric</a> at a certain point in time.</p>
+</dd><dt><a href="Recent.html">Recent</a>
+<dd>
+<p>Joins <a href="Metric.html">Metric</a> to its most recent <a
+href="Datum.html">Datum</a> by <a href="Company.html">Company</a>.</p>
+</dd><dt><a href="Company.html">Company</a>
+<dd>
+<p>Contains information for looking up company within files obtained from the
+Getter Server.</p>
+</dd><dt><a href="User.html">User</a>
+<dd>
+<p>Used for login. Has an associated <a href="Company.html">Company</a>.</p>
+</dd></dl>
+
+<h2 id="label-Metrics">Metrics<span><a href="#label-Metrics">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>The three categories of <a href="Metric.html">Metric</a> are subclasses of
+<a href="Metric.html">Metric</a></p>
 <ul><li>
 <p><a href="Raw.html">Raw</a></p>
 </li><li>
@@ -171,31 +200,38 @@ server</code> to run locally</p>
 
 <p>All metric definitions are made in app/models/definitions</p>
 
+<p>Create a new definition then run
+<code>MetricName.singleton(&#39;description&#39;)</code> from <code>rails
+console</code> to instantiate.</p>
+
 <p>Use <code>rails g percentile MetricName</code> to generate a percentile
 metric for MetricName.</p>
 
 <p>For examples of model definitions, look in the app/models/definitions
 directory</p>
 
-<h3 id="label-User+Management"><a href="User.html">User</a> Management<span><a href="#label-User+Management">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-User+Management"><a href="User.html">User</a> Management<span><a href="#label-User+Management">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>After adding a new user to the Getter Server… Open up <code>rails
 console</code> and create new users like this.</p>
 
-<p><code> company = Company.new(:name =&gt; &#39;name&#39;, :url =&gt;
-&#39;getter hash key&#39;) company.save user = User.new(:username =&gt;
-&#39;username&#39;, :email =&gt; &#39;test@example.com&#39;, :password
-=&gt; &#39;password&#39;, :password_confirmation =&gt; &#39;password&#39;,
-:company =&gt; company) user.save </code></p>
+<pre class="ruby"><span class="ruby-identifier">company</span> = <span class="ruby-constant">Company</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;name&#39;</span>, :<span class="ruby-identifier">url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;getter hash key&#39;</span>)
+<span class="ruby-identifier">company</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">username</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;username&#39;</span>, :<span class="ruby-identifier">email</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;test@example.com&#39;</span>, :<span class="ruby-identifier">password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;password&#39;</span>, :<span class="ruby-identifier">password_confirmation</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;password&#39;</span>, :<span class="ruby-identifier">company</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">company</span>)
+<span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+</pre>
 
-<h3 id="label-Tasks">Tasks<span><a href="#label-Tasks">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
-
+<h2 id="label-Tasks">Tasks<span><a href="#label-Tasks">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<ul><li>
 <p><code>rake worker:update_raw</code> then <code>rake
 worker:update_calculated</code> should be run every week. These may take a
-long time. <code>rake metrics:init</code> Initializes the singleton
-database records for all definitions in app/models/definitions.</p>
+long time.</p>
+</li><li>
+<p><code>rake metrics:init</code> Initializes the singleton database records
+for all definitions in app/models/definitions.</p>
+</li></ul>
 
-<h3 id="label-Deployment">Deployment<span><a href="#label-Deployment">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-Deployment">Deployment<span><a href="#label-Deployment">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>Make sure the Heroku toolbelt is installed, as outlined in Heroku&#39;s
 documentation.</p>
@@ -209,7 +245,7 @@ master</code> to push changes live on viz-analytics.herokuapp.com</p>
 
 <p>Use <code>heroku run [cmd]</code> to run tasks on the server.</p>
 
-<h3 id="label-TODO">TODO<span><a href="#label-TODO">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h2 id="label-TODO">TODO<span><a href="#label-TODO">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 
 <p>A graphical interface for viewing change in metrics over time has been
 half-implemented in the <a

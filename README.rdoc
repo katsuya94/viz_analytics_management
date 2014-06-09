@@ -1,70 +1,78 @@
-== README
+= README
 
-=== WARNING
+== WARNING
 
 Understanding this app requires a reasonable understanding of Rails and Ruby.
 
-=== Setup
+== Setup
 
-==== Ruby Setup
+=== Ruby Setup
 
 This project uses Ruby 2.0.0-p247 as defined in .rbenv-version, we recommend using rbenv to handle multiple versions of ruby.
 This project uses bundler to manage gems run <tt>gem install bundler</tt> to install.
 After installing these, install dependencies with <tt>bundle install</tt>.
 The versioning control system is git.
 
-==== Database Setup
+=== Database Setup
 
 This project is designed to work with PostgreSQL.
 
 config/database.yml should look like
-<tt>
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: dbname
-  pool: pool
-  host: hostname
-  port: port (usually 5432)
-  username: dbusername
-  password: dbpassword
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
-</tt>
+  development:
+    adapter: postgresql
+    encoding: unicode
+    database: dbname
+    pool: pool
+    host: hostname
+    port: port (usually 5432)
+    username: dbusername
+    password: dbpassword
+
+  # Warning: The database defined as "test" will be erased and
+  # re-generated from your development database when you run "rake".
+  # Do not set this db to the same as development or production.
+  test:
+    adapter: sqlite3
+    database: db/test.sqlite3
+    pool: 5
+    timeout: 5000
 
 After connecting the database run <tt>rake db:create</tt>
 Then run <tt>rake metrics:init</tt>
 
-==== Environment
+=== Environment
 .env should look like
-<tt>
-RACK_ENV=development
-PORT=3000
-SECRET_KEY=keyGeneratedWithRakeSecret
-GETTER_PASSWORD=getterServerPassword
-</tt>
+
+  RACK_ENV=development
+  PORT=3000
+  SECRET_KEY=keyGeneratedWithRakeSecret
+  GETTER_PASSWORD=getterServerPassword
 
 Make sure you generate a key with <tt>rake secret</tt>.
 
-==== Running
+=== Running
 
 With the Heroku toolbelt installed use <tt>foreman start</tt> to run VizAnalytics from Procfile
 Without Heroku installed use <tt>rails server</tt> to run locally
 
-=== Controllers
+== Controllers
 
 * GuestController
 * HistoryController
 * MetricsController
 
-=== Metrics
+== Models
+
+[Metric]   Uses Single Table Inheritance to exhibit different behavior for different classes. Encapsulates logic for querying/getting new Datum.
+[Datum]    Holds a value and a timestamp corresponding to a Metric at a certain point in time.
+[Recent]   Joins Metric to its most recent Datum by Company.
+[Company]  Contains information for looking up company within files obtained from the Getter Server.
+[User]     Used for login. Has an associated Company.
+
+== Metrics
+
+The three categories of Metric are subclasses of Metric
 
 * Raw
 * Calculated
@@ -72,28 +80,28 @@ Without Heroku installed use <tt>rails server</tt> to run locally
 
 All metric definitions are made in app/models/definitions
 
+Create a new definition then run <tt>MetricName.singleton('description')</tt> from <tt>rails console</tt> to instantiate.
+
 Use <tt>rails g percentile MetricName</tt> to generate a percentile metric for MetricName.
 
 For examples of model definitions, look in the app/models/definitions directory
 
-=== User Management
+== User Management
 
 After adding a new user to the Getter Server...
 Open up <tt>rails console</tt> and create new users like this.
 
-<tt>
-company = Company.new(:name => 'name', :url => 'getter hash key')
-company.save
-user = User.new(:username => 'username', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :company => company)
-user.save
-</tt>
+  company = Company.new(:name => 'name', :url => 'getter hash key')
+  company.save
+  user = User.new(:username => 'username', :email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :company => company)
+  user.save
 
-=== Tasks
+== Tasks
 
-<tt>rake worker:update_raw</tt> then <tt>rake worker:update_calculated</tt> should be run every week. These may take a long time.
-<tt>rake metrics:init</tt> Initializes the singleton database records for all definitions in app/models/definitions.
+* <tt>rake worker:update_raw</tt> then <tt>rake worker:update_calculated</tt> should be run every week. These may take a long time.
+* <tt>rake metrics:init</tt> Initializes the singleton database records for all definitions in app/models/definitions.
 
-=== Deployment
+== Deployment
 
 Make sure the Heroku toolbelt is installed, as outlined in Heroku's documentation.
 
@@ -105,6 +113,6 @@ After getting permissions and commiting changes, use <tt>git push heroku master<
 
 Use <tt>heroku run [cmd]</tt> to run tasks on the server.
 
-=== TODO
+== TODO
 
 A graphical interface for viewing change in metrics over time has been half-implemented in the HistoryController.
